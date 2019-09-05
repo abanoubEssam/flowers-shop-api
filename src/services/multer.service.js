@@ -14,6 +14,7 @@ const storage = multer.diskStorage({
         cb(null , `./${destFolder}`);
     },
     filename: function (req , file , cb) {
+        // console.log('** multer **' , file);
         cb(null , file.originalname);
     }
 });
