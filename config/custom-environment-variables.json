@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "shops_jwtPrivateKey",
+  "db": "mongodb+srv://abanoubessam:01280680253Aa!@shop-5bavh.mongodb.net/shop-flower?retryWrites=true&w=majority"
+}

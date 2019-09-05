@@ -1,0 +1,6 @@
+{
+    "protocol":"http",
+    "jwtPrivateKey": "my secret",
+    "db":"mongodb://localhost/Shops-Flowers",
+    "host":"localhost:3000"
+}
