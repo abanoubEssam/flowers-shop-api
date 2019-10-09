@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const notifiSchema = new mongoose.Schema({
 
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Number,
         required: true,
         ref: 'User'
     },

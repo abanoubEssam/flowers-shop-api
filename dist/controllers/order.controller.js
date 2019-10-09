@@ -38,8 +38,7 @@ var _default = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
-              // console.log('params : ', req.params)
-              userId = String(req.params.userId); // console.log('params : ', userId)
+              userId = String(req.params.userId);
 
               if (mongoose.Types.ObjectId.isValid(userId)) {
                 _context2.next = 4;
@@ -92,7 +91,6 @@ var _default = {
 
             case 21:
               flower = _context2.sent;
-              // console.log(shopOrders[flower.shop])
               if (!shopOrders[flower.shop]) shopOrders[flower.shop] = {
                 flowers: [],
                 price: 0
@@ -170,11 +168,7 @@ var _default = {
 
                         case 7:
                           userName = _context.sent;
-                          shopOwner = shop.user; // console.log('shop user', shop.user);
-                          // console.log(' user name ', userName.name);
-                          // user :  find shop by id and get its user id
-                          //text : name of user ordered take an order
-
+                          shopOwner = shop.user;
                           _context.next = 11;
                           return (0, _notification.sendNotifi)(shopOwner, userName.name + " make order from your shop");
 
@@ -251,7 +245,6 @@ var _default = {
 
             case 7:
               flowers = _context3.sent;
-              // const getOrderData = await orderModel.findOne({user : userId} , {} , {});
               res.send(flowers);
 
             case 9:

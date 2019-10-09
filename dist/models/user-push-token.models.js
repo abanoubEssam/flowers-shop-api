@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 
 var userPushToken = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Number,
     ref: 'User'
   },
   tokens: {

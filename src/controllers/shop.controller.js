@@ -75,8 +75,6 @@ export default {
                 res.status(400).send('file is required !');
             }
             validate(req.body, CreateShopSchema)
-
-            // console.log('shop model : ' , ShopModel , ' : this is a shop model console');
             let shop = await ShopModel.create({
                 name: req.body.name,
                 shopImage: `${urlConf}/uploads/` + req.file.originalname,
@@ -88,6 +86,7 @@ export default {
             });
             res.status(201).send(shop);
         } catch (error) {
+            console.log(error);
         }
     },
 

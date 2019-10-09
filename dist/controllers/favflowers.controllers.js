@@ -82,22 +82,21 @@ var _default = {
 
             case 16:
               favFlower = _context.sent;
-              console.log(favFlower);
               res.send(favFlower);
-              _context.next = 24;
+              _context.next = 23;
               break;
 
-            case 21:
-              _context.prev = 21;
+            case 20:
+              _context.prev = 20;
               _context.t0 = _context["catch"](0);
               next(_context.t0);
 
-            case 24:
+            case 23:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 21]]);
+      }, _callee, null, [[0, 20]]);
     }));
 
     function makeFav(_x, _x2, _x3) {
@@ -136,9 +135,6 @@ var _default = {
               return _context2.abrupt("return", res.status(403).send('you are not allowed to access .'));
 
             case 8:
-              // const favFlowers = await FavModel.find({ user: userId }).populate('flower')
-              // const fflower = await FavModel.find({user: userId})
-              // console.log(fflower)
               pipeline = [{
                 $match: {
                   "user": mongoose.Types.ObjectId(userId)
@@ -196,27 +192,24 @@ var _default = {
 
             case 19:
               count = _context2.t0;
-              console.log('aggegateFavFlowers', FavFlowers); // if (!flowers) return res.status(400).send('there is no flowers');
-
               res.send({
                 FavFlowers: FavFlowers,
                 count: count
-              }); // res.send(aggegateFavFlowers , count);
-
-              _context2.next = 27;
+              });
+              _context2.next = 26;
               break;
 
-            case 24:
-              _context2.prev = 24;
+            case 23:
+              _context2.prev = 23;
               _context2.t1 = _context2["catch"](3);
               next(_context2.t1);
 
-            case 27:
+            case 26:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[3, 24]]);
+      }, _callee2, null, [[3, 23]]);
     }));
 
     function getFav(_x4, _x5, _x6) {
@@ -267,57 +260,47 @@ var _default = {
 
             case 11:
               flower = _context3.sent;
-              console.log(flowerId);
 
               if (flower) {
-                _context3.next = 15;
+                _context3.next = 14;
                 break;
               }
 
               return _context3.abrupt("return", res.status(404).send('flower not found'));
 
-            case 15:
-              console.log('test  0 :', flower.shop.user);
-              console.log(userId); // if (flower.shop.user == userId) {
-              //     console.log(flower.shop.user );
-              //     const deleteFlower = await FavModel.findOneAndRemove(flowerId);
-              //     console.log('successed')
-              //     if(!deleteFlower) return res.status(404).send('The flower with the given ID was not found.');
-              // }
-
-              _context3.next = 19;
+            case 14:
+              _context3.next = 16;
               return _favflowers.FavModel.findOneAndRemove({
                 user: userId,
                 flower: flowerId
               });
 
-            case 19:
+            case 16:
               deleteFlower = _context3.sent;
 
               if (deleteFlower) {
-                _context3.next = 22;
+                _context3.next = 19;
                 break;
               }
 
               return _context3.abrupt("return", res.status(404).send('The flower with the given ID was not found.'));
 
-            case 22:
-              console.log('deleted successfully');
+            case 19:
               res.status(204).send();
-              _context3.next = 29;
+              _context3.next = 25;
               break;
 
-            case 26:
-              _context3.prev = 26;
+            case 22:
+              _context3.prev = 22;
               _context3.t0 = _context3["catch"](0);
               next(_context3.t0);
 
-            case 29:
+            case 25:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[0, 26]]);
+      }, _callee3, null, [[0, 22]]);
     }));
 
     function deleteFav(_x7, _x8, _x9) {

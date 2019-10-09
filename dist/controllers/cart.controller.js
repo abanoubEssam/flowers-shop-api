@@ -30,8 +30,7 @@ var _default = {
             case 0:
               _context.prev = 0;
               flowerId = String(req.params.flowerId);
-              userId = String(req.params.userId); // console.log('flowerId' ,flowerId);
-              // console.log('userId' , userId);
+              userId = String(req.params.userId);
 
               if (mongoose.Types.ObjectId.isValid(userId)) {
                 _context.next = 5;
@@ -77,8 +76,7 @@ var _default = {
                 },
                 $inc: {
                   totalPrice: +flower.price
-                } // console.log(flower);
-
+                }
               };
               _context.next = 17;
               return _cart.CartModel.findOneAndUpdate({
@@ -149,7 +147,6 @@ var _default = {
               return _context2.abrupt("return", res.status(403).send('you are not allowed to access .'));
 
             case 9:
-              // const favFlowers = await FavModel.find({ user: userId }).populate('flower');
               res.send(flower);
               _context2.next = 15;
               break;
@@ -237,59 +234,52 @@ var _default = {
 
             case 19:
               if (!(i < cartUserFlowersLength)) {
-                _context3.next = 28;
+                _context3.next = 26;
                 break;
               }
-
-              console.log(cartUser.flowers[i], flowerId);
 
               if (!(String(cartUser.flowers[i]) === flowerId)) {
-                _context3.next = 25;
+                _context3.next = 23;
                 break;
               }
 
-              console.log("IM INVOKED..");
               cartUser.flowers.splice(i, 1);
-              return _context3.abrupt("break", 28);
+              return _context3.abrupt("break", 26);
 
-            case 25:
+            case 23:
               i++;
               _context3.next = 19;
               break;
 
-            case 28:
+            case 26:
               if (!(cartUserFlowersLength === cartUser.flowers.length)) {
-                _context3.next = 30;
+                _context3.next = 28;
                 break;
               }
 
               return _context3.abrupt("return", res.send('flower not exist in your cart'));
 
-            case 30:
-              cartUser.totalPrice -= flower.price; // const rflower = await CartModel.findByIdAndRemove(flowerId);
-              // console.log(rflower);
-              // console.log(Cart);
-
-              _context3.next = 33;
+            case 28:
+              cartUser.totalPrice -= flower.price;
+              _context3.next = 31;
               return cartUser.save();
 
-            case 33:
+            case 31:
               res.status(201).send(cartUser);
-              console.log('deleted successfully');
-              _context3.next = 40;
+              _context3.next = 37;
               break;
 
-            case 37:
-              _context3.prev = 37;
+            case 34:
+              _context3.prev = 34;
               _context3.t0 = _context3["catch"](0);
               next(_context3.t0);
 
-            case 40:
+            case 37:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[0, 37]]);
+      }, _callee3, null, [[0, 34]]);
     }));
 
     function deleteFlower(_x7, _x8, _x9) {

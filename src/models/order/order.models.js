@@ -8,7 +8,7 @@ All attributes are required for simplicity
 */
 export const orderSchema = new mongoose.Schema({
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Number,
         required: true,
         ref: 'User'
     },

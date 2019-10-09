@@ -7,7 +7,6 @@ import {urlConf} from './../utils/urlUpload';
 
 export default {
     async findAllFowers(req , res , next){
-        console.log(' el findAllFlowers func work ====== ');
      
         // const flowers = await FlowerModel.find().populate('shop');
         const flowers = await FlowerModel.find().sort({sponsored : -1 });
@@ -15,8 +14,6 @@ export default {
     },
     async findFlowers( req , res , next){
         try {
-            console.log(' el findFlowers func work ====== ');
-
             let pageNumber = Number(req.query.pageNumber) || 1;
             let pageSize = Number(req.query.pageSize) || 5;
 
@@ -26,19 +23,6 @@ export default {
 
             const countFlowers = await FlowerModel.count();
             let pageCount = Math.ceil(countFlowers / pageSize)
-
-            // const skiped = (pageNumber - 1 ) * pageSize;
-            // console.log("pageNumber : " , pageNumber , "pageSize : " , pageSize)
-            // console.log('skiped' , skiped)
-            // if (skiped == 0 ) {
-            //    let remainigCount = countFlowers - pageSize;
-            //     console.log("skiped =0 , remaining count : " , remainigCount)
-            // }
-            // else{
-            //     let remainigCount = countFlowers - skiped;
-            //     console.log("remaining count : " , remainigCount)
-
-            // }
             res.send({data: flowers , pageNumber , pageSize , totalCount: countFlowers , pageCount  });
 
         } catch (error) {
@@ -46,7 +30,6 @@ export default {
         }
     },
     async insertFlower(req, res , next) {
-    //    console.log('insert invoked /............ ')
         let { shopId } = req.params;
         try {
             if (!mongoose.Types.ObjectId.isValid(req.params.shopId)) {
@@ -84,7 +67,6 @@ export default {
         }
     },
     async findFlowersByShopId(req , res , next){
-    //   console.log('findFlowersByShopId invoked .............../ ')
         let { shopId } = req.params;
         try {
             if (!mongoose.Types.ObjectId.isValid(req.params.shopId)) {

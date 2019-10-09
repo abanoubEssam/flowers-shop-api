@@ -33,18 +33,16 @@ var _default = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log(' el findAllFlowers func work ====== '); // const flowers = await FlowerModel.find().populate('shop');
-
-              _context.next = 3;
+              _context.next = 2;
               return _flower2.FlowerModel.find().sort({
                 sponsored: -1
               });
 
-            case 3:
+            case 2:
               flowers = _context.sent;
               res.send(flowers);
 
-            case 5:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -68,33 +66,21 @@ var _default = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
-              console.log(' el findFlowers func work ====== ');
               pageNumber = Number(req.query.pageNumber) || 1;
               pageSize = Number(req.query.pageSize) || 5;
-              _context2.next = 6;
+              _context2.next = 5;
               return _flower2.FlowerModel.find().sort({
                 sponsored: -1
               }).skip((pageNumber - 1) * pageSize).limit(Number(pageSize));
 
-            case 6:
+            case 5:
               flowers = _context2.sent;
-              _context2.next = 9;
+              _context2.next = 8;
               return _flower2.FlowerModel.count();
 
-            case 9:
+            case 8:
               countFlowers = _context2.sent;
-              pageCount = Math.ceil(countFlowers / pageSize); // const skiped = (pageNumber - 1 ) * pageSize;
-              // console.log("pageNumber : " , pageNumber , "pageSize : " , pageSize)
-              // console.log('skiped' , skiped)
-              // if (skiped == 0 ) {
-              //    let remainigCount = countFlowers - pageSize;
-              //     console.log("skiped =0 , remaining count : " , remainigCount)
-              // }
-              // else{
-              //     let remainigCount = countFlowers - skiped;
-              //     console.log("remaining count : " , remainigCount)
-              // }
-
+              pageCount = Math.ceil(countFlowers / pageSize);
               res.send({
                 data: flowers,
                 pageNumber: pageNumber,
@@ -102,20 +88,20 @@ var _default = {
                 totalCount: countFlowers,
                 pageCount: pageCount
               });
-              _context2.next = 17;
+              _context2.next = 16;
               break;
 
-            case 14:
-              _context2.prev = 14;
+            case 13:
+              _context2.prev = 13;
               _context2.t0 = _context2["catch"](0);
               next(_context2.t0);
 
-            case 17:
+            case 16:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 14]]);
+      }, _callee2, null, [[0, 13]]);
     }));
 
     function findFlowers(_x4, _x5, _x6) {
@@ -133,7 +119,6 @@ var _default = {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              //    console.log('insert invoked /............ ')
               shopId = req.params.shopId;
               _context3.prev = 1;
 
@@ -227,7 +212,6 @@ var _default = {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              //   console.log('findFlowersByShopId invoked .............../ ')
               shopId = req.params.shopId;
               _context4.prev = 1;
 

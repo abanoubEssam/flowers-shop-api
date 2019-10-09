@@ -8,8 +8,6 @@ export default {
         try {
             const flowerId = String(req.params.flowerId);
             const userId = String(req.params.userId);
-            // console.log('flowerId' ,flowerId);
-            // console.log('userId' , userId);
             if (!mongoose.Types.ObjectId.isValid(userId)) {
                 return res.status(400).send('please enter a valid  id for user '); // They didn't send an object ID
             }
@@ -19,7 +17,6 @@ export default {
             }
 
             const flower = await FlowerModel.findById(flowerId);
-            // console.log('flowerId 2 ' , flowerId);
             if (!flower) return res.status(404).send('flower not found');
 
             if (String(req.user._id) !== String(userId)) return res.status(403).send('you are not allowed to access .');
@@ -32,7 +29,6 @@ export default {
                     totalPrice: +flower.price
                 }
             }
-            // console.log(flower);
             let Cart = await CartModel.findOneAndUpdate({ user: userId }, updateData, { upsert: true, new: true });
             res.send(Cart);
         } catch (error) {
@@ -51,9 +47,6 @@ export default {
   
             if (String(req.user._id) !== String(userId)) return res.status(403).send('you are not allowed to access .');
            
-            
-            // const favFlowers = await FavModel.find({ user: userId }).populate('flower');
-            
             res.send(flower);
         } catch (error) {
             next(error);
@@ -84,9 +77,7 @@ export default {
             const cartUserFlowersLength = cartUser.flowers.length;
 
             for (let i = 0; i < cartUserFlowersLength; i++) {
-                console.log(cartUser.flowers[i], flowerId);
                 if (String(cartUser.flowers[i]) === flowerId) {
-                    console.log("IM INVOKED..");
                     cartUser.flowers.splice(i, 1);
                     break;
                 }
@@ -99,15 +90,9 @@ export default {
 
             cartUser.totalPrice -= flower.price
 
-            // const rflower = await CartModel.findByIdAndRemove(flowerId);
-            // console.log(rflower);
-            // console.log(Cart);
-
             await cartUser.save();
 
             res.status(201).send(cartUser);
-
-            console.log('deleted successfully');
 
         } catch (error) {
             next(error)

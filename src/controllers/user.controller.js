@@ -40,7 +40,6 @@ export default {
     async createUser(req, res , next) {
         try {
             // console.log(req.file, '  : here is req.file');
-            console.log(req.body, ' : here is req.body');
             if (!req.file) {
                 res.status(400).send('image is required !');
             }
@@ -66,7 +65,6 @@ export default {
             // console.log('user ******  ' , user);
 
             const token = jwt.sign({id: user._id } , config.get('jwtPrivateKey'));
-            console.log('token == ** == : ' , token);
             res.send({
                 user,
                 accessToken:token
@@ -96,8 +94,6 @@ export default {
             // check if user id in token = to user id in params
             checkCurrentUser(req.user, req.params.userId);
             chechPasswordLength(req.body.password)
-
-            console.log(req.body);
             validate(req.body, validateUserOnUpdateSchema);
 
             let updateData = {};

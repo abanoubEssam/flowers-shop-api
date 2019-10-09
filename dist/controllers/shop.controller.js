@@ -167,8 +167,7 @@ var _default = {
                 res.status(400).send('file is required !');
               }
 
-              (0, _validator.validate)(req.body, CreateShopSchema); // console.log('shop model : ' , ShopModel , ' : this is a shop model console');
-
+              (0, _validator.validate)(req.body, CreateShopSchema);
               _context3.next = 5;
               return ShopModel.create({
                 name: req.body.name,
@@ -183,14 +182,15 @@ var _default = {
             case 5:
               shop = _context3.sent;
               res.status(201).send(shop);
-              _context3.next = 11;
+              _context3.next = 12;
               break;
 
             case 9:
               _context3.prev = 9;
               _context3.t0 = _context3["catch"](0);
+              console.log(_context3.t0);
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }

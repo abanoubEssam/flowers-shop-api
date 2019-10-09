@@ -88,45 +88,44 @@ var _default = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
-              // console.log(req.file, '  : here is req.file');
-              console.log(req.body, ' : here is req.body');
 
+              // console.log(req.file, '  : here is req.file');
               if (!req.file) {
                 res.status(400).send('image is required !');
               }
 
               chechPasswordLength(req.body.password);
               (0, _validator.validate)(req.body, SignUpSchema);
-              _context2.next = 7;
+              _context2.next = 6;
               return UserModel.findOne({
                 email: req.body.email
               });
 
-            case 7:
+            case 6:
               foundUserEmail = _context2.sent;
 
               if (!foundUserEmail) {
-                _context2.next = 10;
+                _context2.next = 9;
                 break;
               }
 
               return _context2.abrupt("return", next(new Error('email is duplicated')));
 
-            case 10:
-              _context2.next = 12;
+            case 9:
+              _context2.next = 11;
               return bcrypt.genSalt(10);
 
-            case 12:
+            case 11:
               salt = _context2.sent;
               testDate = Date.now();
               console.log(testDate);
               _context2.t0 = UserModel;
               _context2.t1 = req.body.name;
               _context2.t2 = req.body.email;
-              _context2.next = 20;
+              _context2.next = 19;
               return bcrypt.hash(req.body.password, salt);
 
-            case 20:
+            case 19:
               _context2.t3 = _context2.sent;
               _context2.t4 = testDate;
               _context2.t5 = "".concat(_urlUpload.urlConf, "/uploads/") + req.file.originalname;
@@ -137,34 +136,33 @@ var _default = {
                 creationDate: _context2.t4,
                 userImage: _context2.t5
               };
-              _context2.next = 26;
+              _context2.next = 25;
               return _context2.t0.create.call(_context2.t0, _context2.t6);
 
-            case 26:
+            case 25:
               user = _context2.sent;
               // console.log('user ******  ' , user);
               token = _jsonwebtoken.default.sign({
                 id: user._id
               }, _config.default.get('jwtPrivateKey'));
-              console.log('token == ** == : ', token);
               res.send({
                 user: user,
                 accessToken: token
               });
-              _context2.next = 35;
+              _context2.next = 33;
               break;
 
-            case 32:
-              _context2.prev = 32;
+            case 30:
+              _context2.prev = 30;
               _context2.t7 = _context2["catch"](0);
               res.status(400).send(_context2.t7.message);
 
-            case 35:
+            case 33:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 32]]);
+      }, _callee2, null, [[0, 30]]);
     }));
 
     function createUser(_x4, _x5, _x6) {
@@ -237,7 +235,6 @@ var _default = {
               // check if user id in token = to user id in params
               checkCurrentUser(req.user, req.params.userId);
               chechPasswordLength(req.body.password);
-              console.log(req.body);
               (0, _validator.validate)(req.body, validateUserOnUpdateSchema);
               updateData = {};
 
@@ -250,59 +247,59 @@ var _default = {
               }
 
               if (!req.body.password) {
-                _context4.next = 15;
+                _context4.next = 14;
                 break;
               }
 
-              _context4.next = 11;
+              _context4.next = 10;
               return bcrypt.genSalt(10);
 
-            case 11:
+            case 10:
               salt = _context4.sent;
-              _context4.next = 14;
+              _context4.next = 13;
               return bcrypt.hash(req.body.password, salt);
 
-            case 14:
+            case 13:
               updateData.password = _context4.sent;
 
-            case 15:
+            case 14:
               if (req.file) {
                 updateData.userImage = "".concat(_urlUpload.urlConf, "/uploads/") + req.file.originalname;
               }
 
-              _context4.next = 18;
+              _context4.next = 17;
               return UserModel.findOneAndUpdate({
                 _id: req.params.userId
               }, updateData, {
                 new: true
               });
 
-            case 18:
+            case 17:
               user = _context4.sent;
 
               if (user) {
-                _context4.next = 21;
+                _context4.next = 20;
                 break;
               }
 
               return _context4.abrupt("return", res.status(404).send('The user with the given ID was not found.'));
 
-            case 21:
+            case 20:
               res.send(user);
-              _context4.next = 27;
+              _context4.next = 26;
               break;
 
-            case 24:
-              _context4.prev = 24;
+            case 23:
+              _context4.prev = 23;
               _context4.t0 = _context4["catch"](0);
               next(_context4.t0);
 
-            case 27:
+            case 26:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[0, 24]]);
+      }, _callee4, null, [[0, 23]]);
     }));
 
     function updateUser(_x10, _x11, _x12) {
