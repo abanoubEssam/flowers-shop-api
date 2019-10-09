@@ -322,45 +322,36 @@ var _default = {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.prev = 0;
-
-              if (_mongoose.default.Types.ObjectId.isValid(req.params.userId)) {
-                _context5.next = 3;
-                break;
-              }
-
-              return _context5.abrupt("return", res.status(400).send('please enter a valid  id '));
-
-            case 3:
-              _context5.next = 5;
+              _context5.next = 3;
               return UserModel.findById(req.params.userId);
 
-            case 5:
+            case 3:
               user = _context5.sent;
 
               if (user) {
-                _context5.next = 8;
+                _context5.next = 6;
                 break;
               }
 
               return _context5.abrupt("return", res.status(404).send('The user with the given ID was not found.'));
 
-            case 8:
+            case 6:
               // the user deleted successfuly and there is no content to shown(204)
               res.status(200).send(user);
-              _context5.next = 14;
+              _context5.next = 12;
               break;
 
-            case 11:
-              _context5.prev = 11;
+            case 9:
+              _context5.prev = 9;
               _context5.t0 = _context5["catch"](0);
               next(_context5.t0);
 
-            case 14:
+            case 12:
             case "end":
               return _context5.stop();
           }
         }
-      }, _callee5, null, [[0, 11]]);
+      }, _callee5, null, [[0, 9]]);
     }));
 
     function findUserById(_x13, _x14, _x15) {

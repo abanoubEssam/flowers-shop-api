@@ -130,9 +130,9 @@ export default {
     async findUserById(req, res, next) {
         try {
             // chech if it is right id
-            if (!mongoose.Types.ObjectId.isValid(req.params.userId)) {
-                return res.status(400).send('please enter a valid  id '); // They didn't send an object ID
-            }
+            // if (!mongoose.Types.ObjectId.isValid(req.params.userId)) {
+            //     return res.status(400).send('please enter a valid  id '); // They didn't send an object ID
+            // }
             const user = await UserModel.findById(req.params.userId);
             if (!user) return res.status(404).send('The user with the given ID was not found.');
             // the user deleted successfuly and there is no content to shown(204)
